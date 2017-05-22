@@ -380,7 +380,7 @@ function! s:level.increment(level) abort dict " {{{1
 
   if a:level ==# 'part'
     let self.part += 1
-    let self.chapter = 0
+    "let self.chapter = 0
     let self.section = 0
     let self.subsection = 0
     let self.subsubsection = 0

@@ -160,11 +160,15 @@ function! g:vimtex#toc#matchers#sections.get_entry(context) abort dict " {{{1
     let s:matcher_continue = deepcopy(self)
   endif
 
-  call a:context.level.increment(level)
+  let l:number = ''
+  if a:context.line !~# self.re_starred
+    call a:context.level.increment(level)
+    let l:number = deepcopy(a:context.level)
+  endif
 
   return {
         \ 'title'  : title,
-        \ 'number' : a:context.line =~# self.re_starred ? '' : deepcopy(a:context.level),
+        \ 'number' : l:number,
         \ 'file'   : a:context.file,
         \ 'line'   : a:context.lnum,
         \ 'level'  : a:context.level.current,
